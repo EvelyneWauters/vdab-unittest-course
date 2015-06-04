@@ -29,4 +29,15 @@ public class UtilitiesTest {
     public void greatestCommonFactorOfTwoEqualNumbersEqualsTheNumberItself() throws Exception {
         assertEquals(28, Utilities.greatestCommonFactor(28, 28));
     }
+
+    @Test
+    public void testFlixxinieuwetest() throws Exception {
+        assertEquals(5,Utilities.greatestCommonFactor(5,-5));
+    }
+
+    @Test
+    public void testWatMetNul() throws Exception {
+        assertEquals(1,Utilities.greatestCommonFactor(0,0));
+
+    }
 }
