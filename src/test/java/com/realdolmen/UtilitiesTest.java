@@ -38,6 +38,11 @@ public class UtilitiesTest {
     @Test
     public void testWatMetNul() throws Exception {
         assertEquals(1,Utilities.greatestCommonFactor(0,0));
+    }
+
+    @Test
+    public void testNogEenTest() throws Exception {
+        assertEquals(10,Utilities.greatestCommonFactor(50,10));
 
     }
 }
