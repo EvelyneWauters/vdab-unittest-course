@@ -56,6 +56,20 @@ public class FractionTest {
         }
     }
 
+    //Al eleganter dan methode 1, maar kan niet verder testen op de exception, vb kan niet testen of de message overeenkomt
+    @Test(expected = ForbiddenDenominatorException.class)
+    public void testSetNoemerZeroHasToFailMethod2() throws Exception {
+        new Fraction(1,0);
+    }
+
+//    //beste optie om te testen voor een fail, werken met Rules!
+//    @Test
+//    public void testSetNoemerZerHasToFailMethod3MetRules() throws Exception {
+//        e.expect(IllegalArgumentException.class);
+//        e.expectedMessage("Noemer mag niet 0 zijn");
+//        new Fraction(1,0);  //throws exception
+//    }
+
     @Test
     public void testThrowExceptionWhenInputZeroForNoemer() throws Exception {
         try {
@@ -80,7 +94,7 @@ public class FractionTest {
     }
 
     @Test
-    public void testEqualsFunction() throws Exception {
+    public void testEqualsFractionFunction() throws Exception {
         Fraction f = new Fraction(3,5);
         Fraction g = new Fraction(6,10);
         assertEquals(true, f.equalsFraction(g));
@@ -91,6 +105,20 @@ public class FractionTest {
         Fraction f = new Fraction(3,5);
         Fraction h = new Fraction(8,9);
         assertEquals(false, f.equalsFraction(h));
+    }
+
+    @Test
+    public void testEqualsFunction() throws Exception {
+        Fraction f = new Fraction(3,5);
+        Fraction g = new Fraction(6,10);
+        assertEquals(true, f.equals(g));
+    }
+
+    @Test
+    public void testEqualsGetFalse() throws Exception {
+        Fraction f = new Fraction(3,5);
+        Fraction h = new Fraction(8,9);
+        assertEquals(false, f.equals(h));
     }
 
     @Test
@@ -105,6 +133,14 @@ public class FractionTest {
         Fraction g = new Fraction (8,10);
         assertEquals(7,f.sumFraction(g).simplify().getTeller());
         assertEquals(5,f.sumFraction(g).simplify().getNoemer());
+    }
+
+    @Test
+    public void testSubtracktFractions() throws Exception {
+        Fraction f = new Fraction(3,5);
+        Fraction g = new Fraction (8,10);
+        assertEquals(-1,f.subtracktFraction(g).simplify().getTeller());
+        assertEquals(5,f.subtracktFraction(g).simplify().getNoemer());
     }
 
     @Test

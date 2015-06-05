@@ -30,6 +30,15 @@ public class Fraction {
         return sumFraction;
     }
 
+    public Fraction subtracktFraction(Fraction fraction)    {
+        int nieuweNoemer = this.noemer*fraction.getNoemer();
+        int nieuweTeller = this.teller*fraction.getNoemer() - fraction.getTeller()*this.noemer;
+        Fraction subtracktFraction = new Fraction(nieuweTeller,nieuweNoemer);
+        subtracktFraction.simplify();
+        return subtracktFraction;
+
+    }
+
     public Fraction multiplyFraction(Fraction fraction) {
         Fraction multipliedFraction = new Fraction(this.teller * fraction.getTeller(), (this.noemer * fraction.getNoemer()));
         multipliedFraction.simplify();
@@ -40,7 +49,7 @@ public class Fraction {
         if(fraction.getTeller()==0 || this.getTeller()==0) {
             return new Fraction(0,1);
         } else {
-            Fraction multipliedFraction = new Fraction(this.teller * fraction.getNoemer(), (this.noemer * fraction.getTeller()));
+            Fraction multipliedFraction = this.multiplyFraction(fraction.reciprocal());
             multipliedFraction.simplify();
             return multipliedFraction;
         }
@@ -50,7 +59,16 @@ public class Fraction {
         int i = Utilities.greatestCommonFactor(teller, noemer);
         teller = teller/i;
         noemer = noemer/i;
+        if(noemer<0)    {
+            noemer = Math.abs(noemer);
+            teller = -teller;
+        }
         return new Fraction(teller, noemer);
+
+    }
+
+    public Fraction reciprocal()    {
+        return new Fraction(this.noemer, this.teller);
     }
 
     public boolean equalsFraction(Fraction a)    {
@@ -62,6 +80,22 @@ public class Fraction {
             return false;
         }
     }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Fraction fraction = (Fraction) o;
+        this.simplify();
+        fraction.simplify();
+
+        if (teller != fraction.teller) return false;
+        return noemer == fraction.noemer;
+
+    }
+
 
     public int getNoemer() {
         return noemer;
