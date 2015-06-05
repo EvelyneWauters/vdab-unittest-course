@@ -1,4 +1,4 @@
-package com.realdolmen;
+package com.realdolmen.fractionExercise;
 
 import static java.lang.Math.*;
 

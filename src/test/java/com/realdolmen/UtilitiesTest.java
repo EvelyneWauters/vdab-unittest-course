@@ -1,10 +1,14 @@
 package com.realdolmen;
 
+import com.realdolmen.fractionExercise.Utilities;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
 public class UtilitiesTest {
+
+
+
     @Test
     public void greatestCommonFactorReturnsGreatestCommonFactorForNormalValues() {
         assertEquals(8, Utilities.greatestCommonFactor(24, 16));
@@ -42,7 +46,7 @@ public class UtilitiesTest {
 
     @Test
     public void testNogEenTest() throws Exception {
-        assertEquals(10,Utilities.greatestCommonFactor(50,10));
+        assertEquals(56,Utilities.greatestCommonFactor(7,8));
 
     }
 }
