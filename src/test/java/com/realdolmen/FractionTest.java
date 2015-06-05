@@ -25,6 +25,23 @@ public class FractionTest {
     }
 
     @Test
+    public void testConstructorSimplifyImplementation() throws Exception {
+        Fraction f = new Fraction(18,9);
+        Fraction g = new Fraction(4,-8);
+        Fraction h = new Fraction(-1,8);
+        Fraction i = new Fraction(-1,-8);
+
+        assertEquals(2,f.getTeller());
+        assertEquals(1,f.getNoemer());
+        assertEquals(-1,g.getTeller());
+        assertEquals(2,g.getNoemer());
+        assertEquals(-1,h.getTeller());
+        assertEquals(8,h.getNoemer());
+        assertEquals(1,i.getTeller());
+        assertEquals(8,i.getNoemer());
+    }
+
+    @Test
     public void testgetTellerAndgetNoemer() throws Exception {
         Fraction f = new Fraction(3,5);
         assertEquals(3, f.getTeller());
@@ -35,7 +52,7 @@ public class FractionTest {
     public void testSetTeller() throws Exception {
         Fraction f = new Fraction(3,5);
         f.setTeller(20);
-        assertEquals(20,f.getTeller());
+        assertEquals(4,f.getTeller());
     }
 
     @Test
@@ -80,12 +97,6 @@ public class FractionTest {
         }
     }
 
-    @Test
-    public void testSimplifyFunction() throws Exception {
-        Fraction f = new Fraction(8,10);
-        assertEquals(4, f.simplify().getTeller());
-        assertEquals(5, f.simplify().getNoemer());
-    }
 
     @Test
     public void testToStringFunction() throws Exception {
@@ -131,16 +142,16 @@ public class FractionTest {
     public void testSumOfFractions() throws Exception {
         Fraction f = new Fraction(3,5);
         Fraction g = new Fraction (8,10);
-        assertEquals(7,f.sumFraction(g).simplify().getTeller());
-        assertEquals(5,f.sumFraction(g).simplify().getNoemer());
+        assertEquals(7, f.sumFraction(g).getTeller());
+        assertEquals(5, f.sumFraction(g).getNoemer());
     }
 
     @Test
     public void testSubtracktFractions() throws Exception {
         Fraction f = new Fraction(3,5);
         Fraction g = new Fraction (8,10);
-        assertEquals(-1,f.subtracktFraction(g).simplify().getTeller());
-        assertEquals(5,f.subtracktFraction(g).simplify().getNoemer());
+        assertEquals(-1, f.subtracktFraction(g).getTeller());
+        assertEquals(5, f.subtracktFraction(g).getNoemer());
     }
 
     @Test
@@ -154,16 +165,16 @@ public class FractionTest {
     public void testMultiplicationOfFractions() throws Exception {
         Fraction f = new Fraction(3,5);
         Fraction g = new Fraction (8,10);
-        assertEquals(12,f.multiplyFraction(g).simplify().getTeller());
-        assertEquals(25,f.multiplyFraction(g).simplify().getNoemer());
+        assertEquals(12, f.multiplyFraction(g).getTeller());
+        assertEquals(25, f.multiplyFraction(g).getNoemer());
     }
 
     @Test
     public void testDivideFractions() throws Exception {
         Fraction f = new Fraction(3,5);
         Fraction g = new Fraction (8,10);
-        assertEquals(3,f.divideFraction(g).simplify().getTeller());
-        assertEquals(4, f.divideFraction(g).simplify().getNoemer());
+        assertEquals(3, f.divideFraction(g).getTeller());
+        assertEquals(4, f.divideFraction(g).getNoemer());
     }
 
     @Test
@@ -171,15 +182,22 @@ public class FractionTest {
         Fraction f = new Fraction(3,5);
         Fraction g = new Fraction (8,10);
         g.setTeller(0);
-        assertEquals(0, f.divideFraction(g).getTeller());
-        assertEquals(1, f.divideFraction(g).getNoemer());
-    }
+        assertEquals(new Fraction(0,1), f.divideFraction(g));
+   }
 
     @Test
      public void testDivideWithZeroThis() throws Exception {
-        Fraction f = new Fraction(3,5);
-        Fraction g = new Fraction (8,10);
+        Fraction f = new Fraction(3, 5);
+        Fraction g = new Fraction(8, 10);
         f.setTeller(0);
-        assertEquals(0, f.divideFraction(g).getTeller());
-        assertEquals(1, f.divideFraction(g).getNoemer());    }
+        assertEquals(new Fraction(0, 1), f.divideFraction(g));
+    }
+
+    //test theorystuff
+    @Test
+    public void testReciprocalMethod() throws Exception {
+        Fraction f = new Fraction(5,6);
+        assertEquals(6,f.reciprocal().getTeller());
+        assertEquals(5,f.reciprocal().getNoemer());
+    }
 }

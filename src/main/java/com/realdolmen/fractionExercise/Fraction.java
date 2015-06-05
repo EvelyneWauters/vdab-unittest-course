@@ -9,6 +9,7 @@ public class Fraction {
     public Fraction(int teller, int noemer) {
         this.teller = teller;
         this.noemer = setNoemerVoorConstructor(noemer);
+        this.simplify();
     }
 
     public Fraction() {
@@ -55,7 +56,9 @@ public class Fraction {
         }
     }
 
-    public Fraction simplify()  {
+    //Simplify functie wordt aangeroepen bij de constructor & bij de setters
+    //hierdoor worden overflow-problemen vermeden
+    private void simplify()  {
         int i = Utilities.greatestCommonFactor(teller, noemer);
         teller = teller/i;
         noemer = noemer/i;
@@ -63,8 +66,6 @@ public class Fraction {
             noemer = Math.abs(noemer);
             teller = -teller;
         }
-        return new Fraction(teller, noemer);
-
     }
 
     public Fraction reciprocal()    {
@@ -93,9 +94,9 @@ public class Fraction {
 
         if (teller != fraction.teller) return false;
         return noemer == fraction.noemer;
-
     }
 
+    //GETTERS & SETTERS
 
     public int getNoemer() {
         return noemer;
@@ -107,6 +108,7 @@ public class Fraction {
         } else  {
             throw new ForbiddenDenominatorException("Noemer mag niet 0 zijn");
         }
+        this.simplify();
     }
 
     private int setNoemerVoorConstructor(int noemer)   {
@@ -123,6 +125,8 @@ public class Fraction {
     }
 
     public void setTeller(int teller) {
+
         this.teller = teller;
+        this.simplify();
     }
 }
