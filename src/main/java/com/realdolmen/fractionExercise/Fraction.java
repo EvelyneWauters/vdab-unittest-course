@@ -37,7 +37,7 @@ public class Fraction {
     }
 
     public Fraction divideFraction(Fraction fraction)   {
-        if(fraction.getTeller()==0) {
+        if(fraction.getTeller()==0 || this.getTeller()==0) {
             return new Fraction(0,1);
         } else {
             Fraction multipliedFraction = new Fraction(this.teller * fraction.getNoemer(), (this.noemer * fraction.getTeller()));

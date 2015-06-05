@@ -18,6 +18,13 @@ public class FractionTest {
     }
 
     @Test
+    public void testMakeFractionWithEmptyConstructor() throws Exception {
+        Fraction f = new Fraction();
+        assertEquals(0,f.getTeller());
+        assertEquals(0,f.getNoemer());
+    }
+
+    @Test
     public void testgetTellerAndgetNoemer() throws Exception {
         Fraction f = new Fraction(3,5);
         assertEquals(3, f.getTeller());
@@ -123,6 +130,20 @@ public class FractionTest {
         assertEquals(4, f.divideFraction(g).simplify().getNoemer());
     }
 
+    @Test
+    public void testDivideWithZeroOther() throws Exception {
+        Fraction f = new Fraction(3,5);
+        Fraction g = new Fraction (8,10);
+        g.setTeller(0);
+        assertEquals(0, f.divideFraction(g).getTeller());
+        assertEquals(1, f.divideFraction(g).getNoemer());
+    }
 
-
+    @Test
+     public void testDivideWithZeroThis() throws Exception {
+        Fraction f = new Fraction(3,5);
+        Fraction g = new Fraction (8,10);
+        f.setTeller(0);
+        assertEquals(0, f.divideFraction(g).getTeller());
+        assertEquals(1, f.divideFraction(g).getNoemer());    }
 }
