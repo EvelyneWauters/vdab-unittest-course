@@ -1,7 +1,5 @@
 package com.realdolmen.fractionExercise;
 
-import com.sun.xml.internal.ws.api.model.CheckedException;
-
 /**
  * Created by jeansmits on 04/06/15.
  */

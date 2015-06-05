@@ -46,7 +46,7 @@ public class UtilitiesTest {
 
     @Test
     public void testNogEenTest() throws Exception {
-        assertEquals(56,Utilities.greatestCommonFactor(7,8));
+        assertEquals(1,Utilities.greatestCommonFactor(7,8));
 
     }
 }
