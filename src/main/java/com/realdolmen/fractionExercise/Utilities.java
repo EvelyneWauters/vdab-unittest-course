@@ -2,7 +2,7 @@ package com.realdolmen.fractionExercise;
 
 import static java.lang.Math.*;
 
-public class Utilities {
+public abstract class Utilities {
     /**
      * Calculates the "greatest common factor" (GCF) or "greatest common divisor" (GCD) of two integers (Z).
      * @param a First integer.

@@ -11,7 +11,7 @@ import java.util.Collection;
 
 import static org.junit.Assert.assertEquals;
 
-@RunWith(Parameterized.class)
+//@RunWith(Parameterized.class)
 public class FractionParameterTest {
 //    @Parameterized.Parameters
 //    public static Collection<Object[]> parameters() {
