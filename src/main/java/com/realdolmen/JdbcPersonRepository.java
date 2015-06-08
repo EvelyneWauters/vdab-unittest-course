@@ -91,7 +91,7 @@ public class JdbcPersonRepository implements PersonRepository {
         private Person implode(ResultSet rs) throws SQLException {
             Person person = new Person(
                     rs.getString("firstName"),
-                    null, // Bug! Oops! rs.getString("lastName"),
+                    rs.getString("lastName"),
                     rs.getDate("birthDate"),
                     new Address(
                             rs.getString("street"),
@@ -127,7 +127,7 @@ public class JdbcPersonRepository implements PersonRepository {
      * @throws SQLException When a connection could not be made.
      */
     private static Connection createConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "root", "");
+        return DriverManager.getConnection("jdbc:mysql://localhost:3306/testJBUnit", "root", "");
     }
 
     private static <T> T execute(StatementExecutor<T> statementExecutor) {

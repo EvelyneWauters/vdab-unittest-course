@@ -5,6 +5,7 @@ import org.dbunit.database.IDatabaseConnection;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.operation.DatabaseOperation;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -42,5 +43,15 @@ public class JdbcPersonRepositoryTest {
         assertEquals("Hendrix", person.getLastName());
     }
 
+    @Test
+    public void testWhatHappensWhenTheresNoPersonWithThisId() throws Exception {
+        try {
+            PersonRepository repository = new JdbcPersonRepository();
+            Person person = repository.find(5);
+            Assert.fail();
+        } catch(RepositoryException e)  {
+            assertEquals("Unable to execute statement", e.getMessage());
+        }
 
+    }
 }
