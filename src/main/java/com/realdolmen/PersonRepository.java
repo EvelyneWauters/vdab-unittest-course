@@ -1,5 +1,6 @@
 package com.realdolmen;
 
+//dit is een DAO(data access object)
 public interface PersonRepository {
     /**
      * Retrieves a person by it's primary key.
