@@ -1,4 +1,4 @@
 <dataset>
-    <people id = "1" firstName = "Jimi" lastName = "Hendrix"/>
-    <people id = "2" firstName = "Janis" lastName = "Joplin"/>
+    <people id = "1" firstName = "Jimi" lastName = "Hendrix" birthDate = "1942-11-27" street = "Kerkstraat" number = "87" city = "Seattle" postalcode = "9200" />
+    <people id = "2" firstName = "Janis" lastName = "Joplin" birthDate = "1943-01-19" street = "Celestijnenlaan" number = "67" city = "Port Arthur" postalcode = "9200" />
 </dataset>

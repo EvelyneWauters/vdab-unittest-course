@@ -35,10 +35,12 @@ public class JdbcPersonRepository implements PersonRepository {
                 PreparedStatement statement = connection.prepareStatement("select * from people p where p.id = ?");
                 statement.setInt(1, id);
                 ResultSet resultSet = statement.executeQuery();
-                resultSet.next();
-                // What happens if there is no person with this id?
-                // Did you test that scenario?
-                return new PersonMapper().implode(resultSet);
+                Boolean isThereAResultSet = resultSet.next();
+                if (isThereAResultSet == false) {
+                    return null;
+                } else {
+                    return new PersonMapper().implode(resultSet);
+                }
             }
         });
     }
@@ -96,12 +98,10 @@ public class JdbcPersonRepository implements PersonRepository {
                     new Address(
                             rs.getString("street"),
                             rs.getString("number"),
-                            null
-//                            Bug! Silly me!
-//                            new City(
-//                                    rs.getString("city"),
-//                                    rs.getString("postalCode")
-//                            )
+                            new City(
+                                    rs.getString("city"),
+                                    rs.getString("postalCode")
+                            )
                     )
             );
             person.setId(rs.getInt("id"));
@@ -110,14 +110,14 @@ public class JdbcPersonRepository implements PersonRepository {
 
         private void explode(Person person, PreparedStatement ps) throws SQLException {
 //            Bug! Not paying attention!
-//            ps.setString(1, person.getFirstName());
+            ps.setString(1, person.getFirstName());
             ps.setString(2, person.getLastName());
             ps.setDate(3, new Date(person.getBirthDate().getTime()));
             ps.setString(4, person.getAddress().getStreet());
             ps.setString(5, person.getAddress().getNumber());
             ps.setString(6, person.getAddress().getCity().getName());
 //            Bug! It's not my day!
-//            ps.setString(7, person.getAddress().getCity().getPostalCode());
+            ps.setString(7, person.getAddress().getCity().getPostalCode());
         }
     }
 
