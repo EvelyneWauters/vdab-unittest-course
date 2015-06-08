@@ -20,11 +20,21 @@ public class CalculatorTest {
 
     @Test
     public void addTwoNumbers() throws Exception {
-        String a = "1,2";
-        assertEquals(3, add(a));
+        String a = "5,8";
+        assertEquals(13, add(a));
     }
 
+    @Test
+    public void addAButloadOfNumbers() throws Exception {
+        String a = "1,2,3,4,5,6,7,8,9";
+        assertEquals(45 ,add(a));
+    }
 
+    @Test
+    public void addNumbersWithNewLinesInbetween() throws Exception {
+        String a = "1\n2,3";
+        assertEquals(6,add(a));
+    }
 
 
 }
